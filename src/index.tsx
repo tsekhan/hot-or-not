@@ -1,12 +1,29 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import './index.scss';
 import * as serviceWorker from './serviceWorker';
+import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import GamePage from 'components/GamePage';
+import ResultPage from 'components/ResultPage';
+import SettingsPage from 'components/SettingsPage';
+import { store } from 'utils/store';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <BrowserRouter>
+        <Switch>
+          <Route exact={true} path="/" component={GamePage} />
+          <Route exact={true} path="/result" component={ResultPage} />
+          <Route exact={true} path="/settings" component={SettingsPage} />
+          <Route>
+            <Redirect to="/" />
+          </Route>
+          <GamePage />
+        </Switch>
+      </BrowserRouter>
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

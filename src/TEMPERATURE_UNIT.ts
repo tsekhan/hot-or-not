@@ -1,0 +1,6 @@
+enum TEMPERATURE_UNIT {
+    CELSIUS,
+    FAHRENHEIT,
+}
+
+export default TEMPERATURE_UNIT;
