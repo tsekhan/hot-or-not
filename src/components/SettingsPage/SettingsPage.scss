@@ -1,0 +1,19 @@
+.SettingsPage {
+
+  &__history {
+    width: 100%;
+    max-width: 700px;
+  }
+
+  &__icon-yes, &__icon-no {
+    font-size: 3em;
+  }
+
+  &__icon-yes.anticon {
+    color: #00c500;
+  }
+
+  &__icon-no.anticon {
+    color: #ff0000;
+  }
+}

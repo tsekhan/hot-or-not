@@ -1,4 +1,4 @@
-import { IGameResult } from 'utils/store';
+import { TGameResult } from 'utils/store';
 import TEMPERATURE_UNIT from 'TEMPERATURE_UNIT';
 import {
   ADD_RESULT,
@@ -7,7 +7,7 @@ import {
   SET_TEMPERATURE_UNIT,
 } from './types';
 
-export const addResult = (result: IGameResult): IAddResultAction => {
+export const addResult = (result: TGameResult): IAddResultAction => {
   return {
     type: ADD_RESULT,
     result,

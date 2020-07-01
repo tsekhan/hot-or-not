@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import './ResultPage.scss';
 
-function ResultPage() {
+const ResultPage: FunctionComponent = () => {
   return <div>ResultPage</div>;
-}
+};
 
 export default ResultPage;

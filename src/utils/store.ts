@@ -4,33 +4,31 @@ import { LOCAL_STORAGE_KEY } from 'config';
 import TEMPERATURE_UNIT from 'TEMPERATURE_UNIT';
 import { IAppAction } from '../actions/types';
 
-export interface IGameResult {
-  firstCity: {
-    country: string;
-    name: string;
-    temperatureInCelsius: number;
-  };
-  secondCity: {
-    country: string;
-    name: string;
-    temperatureInCelsius: number;
-  };
-  isCorrect: boolean;
-}
+export type TCityData = {
+  country: string;
+  name: string;
+  temperatureInCelsius: number;
+};
 
-export interface IStoredData {
+export type TGameResult = {
+  firstCity: TCityData;
+  secondCity: TCityData;
+  isCorrect: boolean;
+};
+
+export type TStoredData = {
   score: number;
   temperatureUnit: TEMPERATURE_UNIT;
-  history: IGameResult[];
-}
+  history: TGameResult[];
+};
 
-const defaultData: IStoredData = {
+const defaultData: TStoredData = {
   score: 0,
   temperatureUnit: TEMPERATURE_UNIT.CELSIUS,
   history: [],
 };
 
-const loadState = (): IStoredData => {
+const loadState = (): TStoredData => {
   try {
     const serializedState = localStorage.getItem(LOCAL_STORAGE_KEY);
     if (serializedState === null) {
@@ -42,14 +40,14 @@ const loadState = (): IStoredData => {
   }
 };
 
-const saveState = (state: IStoredData) => {
+const saveState = (state: TStoredData) => {
   const serializedState = JSON.stringify(state);
   localStorage.setItem(LOCAL_STORAGE_KEY, serializedState);
 };
 
 const persistedState = loadState();
 
-export const store = createStore<IStoredData, IAppAction, unknown, unknown>(app, persistedState);
+export const store = createStore<TStoredData, IAppAction, unknown, unknown>(app, persistedState);
 
 store.subscribe(() => {
   saveState(store.getState());
