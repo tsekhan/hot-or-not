@@ -99,7 +99,7 @@ const GamePage: FunctionComponent = () => {
           )}
         </>
       )}
-      {!weather && <Spin size="large" />}
+      {!weather && <Spin size="large" delay={500} />}
     </div>
   );
 };
