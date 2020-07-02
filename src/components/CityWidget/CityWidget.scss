@@ -1,0 +1,23 @@
+.CityWidget {
+  display: inline-grid;
+  border: 3px solid #666;
+  width: 160px;
+  min-height: 160px;
+  text-align: center;
+  overflow: hidden;
+
+  &--clickable {
+    cursor: pointer;
+  }
+
+  &__content {
+    margin: auto;
+    padding: 1em;
+    word-break: break-word;
+  }
+
+  &__temperature {
+    color: #ff4700;
+    font-size: 2em;
+  }
+}

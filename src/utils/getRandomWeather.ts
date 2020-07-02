@@ -13,7 +13,7 @@ const formatCityWeather = (data: any): TCityData => {
   return {
     country: prop(coutries, data.sys.country),
     name: data.name,
-    temperatureInCelsius: Math.round(data.main.temp),
+    temperatureInCelsius: data.main.temp,
   };
 };
 

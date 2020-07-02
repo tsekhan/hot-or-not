@@ -4,7 +4,7 @@ import './GamePage.scss';
 import { getRandomWeather } from 'utils/getRandomWeather';
 import { TCityData, TStoredData } from '../../utils/store';
 import CityWidget from '../CityWidget';
-import { Button, Divider, Typography } from 'antd';
+import { Button, Divider, Space, Typography } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { addResult } from '../../actions/actions';
 
@@ -68,22 +68,25 @@ const GamePage: FunctionComponent = () => {
       <Divider />
       {weather && (
         <>
-          <CityWidget
-            country={weather[0].country}
-            city={weather[0].name}
-            temperatureInCelsius={isUserSelected ? weather[0].temperatureInCelsius : undefined}
-            onClick={!isUserSelected ? () => onCitySelect(0) : undefined}
-          />
-          <CityWidget
-            country={weather[1].country}
-            city={weather[1].name}
-            temperatureInCelsius={isUserSelected ? weather[1].temperatureInCelsius : undefined}
-            onClick={!isUserSelected ? () => onCitySelect(1) : undefined}
-          />
+          <Space size="large" align="center">
+            <CityWidget
+              country={weather[0].country}
+              city={weather[0].name}
+              temperatureInCelsius={isUserSelected ? weather[0].temperatureInCelsius : undefined}
+              onClick={!isUserSelected ? () => onCitySelect(0) : undefined}
+            />
+            <CityWidget
+              country={weather[1].country}
+              city={weather[1].name}
+              temperatureInCelsius={isUserSelected ? weather[1].temperatureInCelsius : undefined}
+              onClick={!isUserSelected ? () => onCitySelect(1) : undefined}
+            />
+          </Space>
           {isUserSelected && (
-            <div>
+            <>
+              <Divider />
               <Button onClick={setupNewRound}>Next cities</Button>
-            </div>
+            </>
           )}
         </>
       )}
