@@ -4,7 +4,7 @@ import './GamePage.scss';
 import { getRandomWeather } from 'utils/getRandomWeather';
 import { TCityData, TStoredData } from '../../utils/store';
 import CityWidget from '../CityWidget';
-import { Button, Divider, Space, Typography } from 'antd';
+import { Button, Divider, notification, Space, Spin, Typography } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { addResult } from '../../actions/actions';
 
@@ -17,7 +17,16 @@ const GamePage: FunctionComponent = () => {
   const [weather, setWeather] = useState<[TCityData, TCityData] | null>(null);
   const [round, setRound] = useState<number>(0);
 
-  const fetchWeather = async () => setWeather(await getRandomWeather());
+  const fetchWeather = async () => {
+    try {
+      setWeather(await getRandomWeather());
+    } catch (e) {
+      notification.error({
+        message: 'Failed to load weather',
+        description: `Reason: ${e.message}. Try to reload page.`,
+      });
+    }
+  };
 
   const [gameResult, setGameResult] = useState<boolean | null>(null);
 
@@ -90,7 +99,7 @@ const GamePage: FunctionComponent = () => {
           )}
         </>
       )}
-      {!weather && <>Loading...</>}
+      {!weather && <Spin size="large" />}
     </div>
   );
 };
