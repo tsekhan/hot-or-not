@@ -5,7 +5,8 @@ export default (state: any, action: IAppAction) => {
     case ADD_RESULT:
       return {
         ...state,
-        results: [action.result, ...state.results],
+        score: state.score + (action.result.isCorrect ? 1 : -1),
+        history: [action.result, ...state.history],
       };
     case SET_TEMPERATURE_UNIT:
       return {

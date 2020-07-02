@@ -13,36 +13,7 @@ const { Title } = Typography;
 
 const SettingsPage: FunctionComponent = () => {
   const unit = useSelector<TStoredData, TEMPERATURE_UNIT>((state) => state.temperatureUnit);
-  let gameHistory = useSelector<TStoredData, TGameResult[]>((state) => state.history);
-
-  gameHistory = [
-    {
-      firstCity: {
-        country: 'Belarus',
-        name: 'Minsk',
-        temperatureInCelsius: 29,
-      },
-      secondCity: {
-        country: 'France',
-        name: 'Brest',
-        temperatureInCelsius: 13,
-      },
-      isCorrect: true,
-    },
-    {
-      firstCity: {
-        country: 'Belarus',
-        name: 'Hrodna',
-        temperatureInCelsius: -7,
-      },
-      secondCity: {
-        country: 'France',
-        name: 'Lion',
-        temperatureInCelsius: 17,
-      },
-      isCorrect: false,
-    },
-  ];
+  const gameHistory = useSelector<TStoredData, TGameResult[]>((state) => state.history);
 
   const dispatch = useDispatch();
 

@@ -10,7 +10,6 @@ const { Header, Content, Footer } = Layout;
 const PATH = {
   HOME: '/',
   GAME: '/game',
-  RESULT: '/result',
   SETTINGS: '/settings',
 };
 
