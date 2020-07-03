@@ -1,15 +1,18 @@
 import React, { FunctionComponent, useEffect, useState } from 'react';
-import './GamePage.scss';
 import { getRandomWeather } from 'utils/getRandomWeather';
-import { TCityData, TStoredData } from '../../utils/store';
-import { ICityWidgetProps } from '../CityWidget';
+import { TCityData, TStoredData } from 'utils/store';
+import { ICityWidgetProps } from 'components/CityWidget';
 import { Button, Divider, notification, Spin, Typography } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
-import { addResult } from '../../actions/actions';
-import TwoCitiesWidget from '../TwoCitiesWidget';
+import { addResult } from 'actions/actions';
+import TwoCitiesWidget from 'components/TwoCitiesWidget';
 
 const { Title } = Typography;
 
+/**
+ * Game page
+ * @constructor
+ */
 const GamePage: FunctionComponent = () => {
   const score = useSelector<TStoredData, number>((state) => state.score);
   const dispatch = useDispatch();

@@ -7,8 +7,8 @@ import { setTemperatureUnit } from 'actions/actions';
 import { RadioChangeEvent } from 'antd/es/radio';
 import { CheckOutlined, CloseOutlined } from '@ant-design/icons';
 import './SettingsPage.scss';
-import TwoCitiesWidget from '../TwoCitiesWidget';
-import { MOBILE_BREAKPOINT } from '../../config';
+import TwoCitiesWidget from 'components/TwoCitiesWidget';
+import { MOBILE_BREAKPOINT } from 'config';
 import MediaQuery from 'react-responsive';
 
 const { Title } = Typography;

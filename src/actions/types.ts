@@ -1,5 +1,5 @@
-import { TGameResult } from '../utils/store';
-import TEMPERATURE_UNIT from '../TEMPERATURE_UNIT';
+import { TGameResult } from 'utils/store';
+import TEMPERATURE_UNIT from 'TEMPERATURE_UNIT';
 
 export const ADD_RESULT = 'ADD_RESULT';
 export const SET_TEMPERATURE_UNIT = 'SET_TEMPERATURE_UNIT';

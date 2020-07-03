@@ -5,7 +5,7 @@ import { TStoredData } from 'utils/store';
 import TEMPERATURE_UNIT from 'TEMPERATURE_UNIT';
 import { useMediaQuery } from 'react-responsive';
 import './CityWidget.scss';
-import { MOBILE_BREAKPOINT } from '../../config';
+import { MOBILE_BREAKPOINT } from 'config';
 
 const { Title, Text } = Typography;
 

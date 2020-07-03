@@ -5,6 +5,10 @@ import { Link } from 'react-router-dom';
 
 import './MainPage.scss';
 
+/**
+ * Main page
+ * @constructor
+ */
 const MainPage: FunctionComponent = () => {
   return (
     <Result

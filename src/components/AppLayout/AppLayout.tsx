@@ -19,6 +19,11 @@ enum PAGE {
   SETTINGS = 'SETTINGS',
 }
 
+/**
+ * App skeleton
+ * @param children
+ * @constructor
+ */
 const AppLayout: FunctionComponent = ({ children }) => {
   let menuKey: string;
 
