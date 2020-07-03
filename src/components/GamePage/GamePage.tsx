@@ -1,12 +1,12 @@
 import React, { FunctionComponent, useEffect, useState } from 'react';
-import { withRouter } from 'react-router-dom';
 import './GamePage.scss';
 import { getRandomWeather } from 'utils/getRandomWeather';
 import { TCityData, TStoredData } from '../../utils/store';
-import CityWidget from '../CityWidget';
-import { Button, Divider, notification, Space, Spin, Typography } from 'antd';
+import { ICityWidgetProps } from '../CityWidget';
+import { Button, Divider, notification, Spin, Typography } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { addResult } from '../../actions/actions';
+import TwoCitiesWidget from '../TwoCitiesWidget';
 
 const { Title } = Typography;
 
@@ -70,6 +70,25 @@ const GamePage: FunctionComponent = () => {
 
   const isUserSelected = gameResult !== null;
 
+  let firstCityData: ICityWidgetProps;
+  let secondCityData: ICityWidgetProps;
+
+  if (weather) {
+    firstCityData = {
+      country: weather[0].country,
+      name: weather[0].name,
+      temperatureInCelsius: isUserSelected ? weather[0].temperatureInCelsius : undefined,
+      onClick: !isUserSelected ? () => onCitySelect(0) : undefined,
+    };
+
+    secondCityData = {
+      country: weather[1].country,
+      name: weather[1].name,
+      temperatureInCelsius: isUserSelected ? weather[1].temperatureInCelsius : undefined,
+      onClick: !isUserSelected ? () => onCitySelect(1) : undefined,
+    };
+  }
+
   return (
     <div>
       <Title>{title}</Title>
@@ -77,20 +96,7 @@ const GamePage: FunctionComponent = () => {
       <Divider />
       {weather && (
         <>
-          <Space size="large" align="center">
-            <CityWidget
-              country={weather[0].country}
-              city={weather[0].name}
-              temperatureInCelsius={isUserSelected ? weather[0].temperatureInCelsius : undefined}
-              onClick={!isUserSelected ? () => onCitySelect(0) : undefined}
-            />
-            <CityWidget
-              country={weather[1].country}
-              city={weather[1].name}
-              temperatureInCelsius={isUserSelected ? weather[1].temperatureInCelsius : undefined}
-              onClick={!isUserSelected ? () => onCitySelect(1) : undefined}
-            />
-          </Space>
+          <TwoCitiesWidget firstCity={firstCityData!} secondCity={secondCityData!} />
           {isUserSelected && (
             <>
               <Divider />
@@ -104,4 +110,4 @@ const GamePage: FunctionComponent = () => {
   );
 };
 
-export default withRouter(GamePage);
+export default GamePage;

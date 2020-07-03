@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import { store } from 'utils/store';
 import GamePage from 'components/GamePage';
 import SettingsPage from 'components/SettingsPage';
-import AppLayout from './components/AppLayout/AppLayout';
+import AppLayout from './components/AppLayout';
 import MainPage from './components/MainPage';
 import { Alert } from 'antd';
 

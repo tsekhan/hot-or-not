@@ -1,22 +1,40 @@
 import React, { FunctionComponent } from 'react';
 import { Typography } from 'antd';
-import './CityWidget.scss';
 import { useSelector } from 'react-redux';
-import { TStoredData } from '../../utils/store';
-import TEMPERATURE_UNIT from '../../TEMPERATURE_UNIT';
+import { TStoredData } from 'utils/store';
+import TEMPERATURE_UNIT from 'TEMPERATURE_UNIT';
+import './CityWidget.scss';
 
 const { Title, Text } = Typography;
 
 export interface ICityWidgetProps {
+  /**
+   * Human-readable name of country where city located
+   */
   country: string;
-  city: string;
+
+  /**
+   * Name of city
+   */
+  name: string;
+
+  /**
+   * Temperature in this city to be displayed if set
+   */
   temperatureInCelsius?: number;
+
+  /**
+   * Callback for click events
+   */
   onClick?: () => void;
 }
 
+/**
+ * Widget to display city information (location and temperature).
+ */
 const CityWidget: FunctionComponent<ICityWidgetProps> = ({
   country,
-  city,
+  name,
   temperatureInCelsius,
   onClick,
 }) => {
@@ -47,7 +65,7 @@ const CityWidget: FunctionComponent<ICityWidgetProps> = ({
   return (
     <div className={`CityWidget ${onClick ? 'CityWidget--clickable' : ''}`} onClick={clickHandler}>
       <div className="CityWidget__content">
-        <Title level={4}>{city}</Title>
+        <Title level={4}>{name}</Title>
         <Text strong={true}>{country}</Text>
         {temperatureInCelsius !== undefined && (
           <div className="CityWidget__temperature">
