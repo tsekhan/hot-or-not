@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import { Divider, Radio, Space, Typography } from 'antd';
+import { Card, Divider, Radio, Space, Typography } from 'antd';
 import TEMPERATURE_UNIT from 'TEMPERATURE_UNIT';
 import { useDispatch, useSelector } from 'react-redux';
 import { TGameResult, TStoredData } from 'utils/store';
@@ -8,6 +8,8 @@ import { RadioChangeEvent } from 'antd/es/radio';
 import { CheckOutlined, CloseOutlined } from '@ant-design/icons';
 import './SettingsPage.scss';
 import TwoCitiesWidget from '../TwoCitiesWidget';
+import { MOBILE_BREAKPOINT } from '../../config';
+import MediaQuery from 'react-responsive';
 
 const { Title } = Typography;
 
@@ -36,15 +38,33 @@ const SettingsPage: FunctionComponent = () => {
       <Title level={2}>History</Title>
       {gameHistory.map((gameResult, index) => (
         <div key={`result-${index}`}>
-          <Space size="large" align="center">
-            <TwoCitiesWidget firstCity={gameResult.firstCity} secondCity={gameResult.secondCity} />
-            {gameResult.isCorrect ? (
-              <CheckOutlined className="SettingsPage__icon-yes" />
-            ) : (
-              <CloseOutlined className="SettingsPage__icon-no" />
-            )}
-          </Space>
-          <Divider />
+          <MediaQuery minWidth={MOBILE_BREAKPOINT + 1}>
+            <Space className="SettingsPage__space">
+              <TwoCitiesWidget
+                firstCity={gameResult.firstCity}
+                secondCity={gameResult.secondCity}
+              />
+              {gameResult.isCorrect ? (
+                <CheckOutlined className="SettingsPage__icon-yes" />
+              ) : (
+                <CloseOutlined className="SettingsPage__icon-no" />
+              )}
+            </Space>
+            <Divider />
+          </MediaQuery>
+          <MediaQuery maxWidth={MOBILE_BREAKPOINT}>
+            <Card className="SettingsPage__history-card">
+              {gameResult.isCorrect ? (
+                <CheckOutlined className="SettingsPage__icon-yes" />
+              ) : (
+                <CloseOutlined className="SettingsPage__icon-no" />
+              )}
+              <TwoCitiesWidget
+                firstCity={gameResult.firstCity}
+                secondCity={gameResult.secondCity}
+              />
+            </Card>
+          </MediaQuery>
         </div>
       ))}
     </div>

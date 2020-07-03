@@ -1,10 +1,14 @@
 .CityWidget {
   display: inline-grid;
   border: 3px solid #666;
-  width: 160px;
-  min-height: 160px;
+  width: 200px;
+  min-height: 200px;
   text-align: center;
   overflow: hidden;
+
+  &--mobile {
+    width: 100%;
+  }
 
   &--clickable {
     cursor: pointer;

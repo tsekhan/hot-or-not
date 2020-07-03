@@ -3,7 +3,9 @@ import { Typography } from 'antd';
 import { useSelector } from 'react-redux';
 import { TStoredData } from 'utils/store';
 import TEMPERATURE_UNIT from 'TEMPERATURE_UNIT';
+import { useMediaQuery } from 'react-responsive';
 import './CityWidget.scss';
+import { MOBILE_BREAKPOINT } from '../../config';
 
 const { Title, Text } = Typography;
 
@@ -39,6 +41,9 @@ const CityWidget: FunctionComponent<ICityWidgetProps> = ({
   onClick,
 }) => {
   const unit = useSelector<TStoredData, TEMPERATURE_UNIT>((state) => state.temperatureUnit);
+  const isMobile = useMediaQuery({
+    query: `(max-width: ${MOBILE_BREAKPOINT}px)`,
+  });
 
   const clickHandler = () => {
     if (onClick) {
@@ -62,8 +67,12 @@ const CityWidget: FunctionComponent<ICityWidgetProps> = ({
     convertedTemperature = +convertedTemperature.toFixed(2);
   }
 
+  const classNames = `CityWidget ${isMobile ? 'CityWidget--mobile' : ''} ${
+    onClick ? 'CityWidget--clickable' : ''
+  }`;
+
   return (
-    <div className={`CityWidget ${onClick ? 'CityWidget--clickable' : ''}`} onClick={clickHandler}>
+    <div className={classNames} onClick={clickHandler}>
       <div className="CityWidget__content">
         <Title level={4}>{name}</Title>
         <Text strong={true}>{country}</Text>

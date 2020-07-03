@@ -2,6 +2,8 @@ import React, { FunctionComponent } from 'react';
 import './TwoCitiesWidget.scss';
 import CityWidget, { ICityWidgetProps } from 'components/CityWidget';
 import { Space } from 'antd';
+import MediaQuery from 'react-responsive';
+import { MOBILE_BREAKPOINT } from '../../config';
 
 export interface ITwoCitiesWidgetProps {
   firstCity: ICityWidgetProps;
@@ -10,10 +12,20 @@ export interface ITwoCitiesWidgetProps {
 
 const TwoCitiesWidget: FunctionComponent<ITwoCitiesWidgetProps> = ({ firstCity, secondCity }) => {
   return (
-    <Space size="large" align="center">
-      <CityWidget {...firstCity} />
-      <CityWidget {...secondCity} />
-    </Space>
+    <>
+      <MediaQuery minWidth={MOBILE_BREAKPOINT + 1}>
+        <Space size="large" align="center">
+          <CityWidget {...firstCity} />
+          <CityWidget {...secondCity} />
+        </Space>
+      </MediaQuery>
+      <MediaQuery maxWidth={MOBILE_BREAKPOINT}>
+        <Space className="TwoCitiesWidget__vertical-space" direction="vertical">
+          <CityWidget {...firstCity} />
+          <CityWidget {...secondCity} />
+        </Space>
+      </MediaQuery>
+    </>
   );
 };
 
